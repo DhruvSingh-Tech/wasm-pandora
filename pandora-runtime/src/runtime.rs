@@ -146,4 +146,33 @@ impl PandoraRuntime {
         })
     }
 
+    pub fn run_uploaded(&self, path: &str) -> Result<RunReport> {
+        let started = Instant::now();
+        let mut store = self.create_store()?;
+
+        let result = (|| -> Result<String> {
+            let module = Module::from_file(&self.engine, path)?;
+            let linker = self.create_linker()?;
+
+            let instance = linker.instantiate(&mut store, &module)?;
+
+            // Uploaded plugin ABI: export `run() -> i32`.
+            let run = instance.get_typed_func::<(), i32>(&mut store, "run")?;
+            let output = run.call(&mut store, ())?;
+
+            Ok(format!("Plugin returned: {output}"))
+        })();
+
+        let duration_us = started.elapsed().as_micros();
+        let fuel_remaining = store.get_fuel()?;
+
+        Ok(RunReport {
+            success: result.is_ok(),
+            duration_us,
+            fuel_remaining,
+            message: result.unwrap_or_else(|error| format!("{error:#}")),
+        })
+    }
+
+
 }

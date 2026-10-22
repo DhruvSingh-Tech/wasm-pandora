@@ -11,7 +11,7 @@ fn main() -> Result<()> {
     let plugin = args
         .get(1)
         .ok_or_else(|| anyhow!(
-            "Usage: run_plugin <add|logger|infinite_loop|unauthorized|memory> [a b]"
+            "Usage: run_plugin <add|logger|infinite_loop|unauthorized|memory> [a b]   or run_plugin uploaded <path>"
         ))?;
 
     let runtime = PandoraRuntime::new()?;
@@ -34,6 +34,13 @@ fn main() -> Result<()> {
         "infinite_loop" => runtime.run_unit("plugins/infinite_loop.wasm")?,
         "unauthorized" => runtime.run_unit("plugins/unauthorized_access.wasm")?,
         "memory" => runtime.run_memory("plugins/memory_bomb.wasm")?,
+        "uploaded" => {
+            let path = args
+                .get(2)
+                .ok_or_else(|| anyhow!("Missing uploaded WASM path"))?;
+
+            runtime.run_uploaded(path)?
+        },
         _ => return Err(anyhow!("Unknown plugin ID: {plugin}")),
     };
 

@@ -1,0 +1,223 @@
+
+.security-lab {
+  margin: 24px 0;
+  padding: 24px;
+  color: #e7eaf0;
+  background: #11151d;
+  border: 1px solid #262d39;
+  border-radius: 16px;
+}
+
+.security-lab__header,
+.security-lab__test-title,
+.security-lab__metrics {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.security-lab__header h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 6px 0;
+  font-size: 22px;
+}
+
+.security-lab__eyebrow {
+  margin: 0;
+  color: #9ba8ba;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.security-lab__subtitle,
+.security-lab__test-content > p {
+  color: #a2acbc;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.security-lab__run,
+.security-lab__individual-run {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  color: #f7f9fc;
+  background: #28364a;
+  border: 1px solid #3a4a60;
+  border-radius: 9px;
+  cursor: pointer;
+}
+
+.security-lab__run:disabled,
+.security-lab__individual-run:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.security-lab__summary {
+  display: flex;
+  gap: 40px;
+  margin: 22px 0;
+  padding: 16px;
+  background: #0c1017;
+  border: 1px solid #252c37;
+  border-radius: 12px;
+}
+
+.security-lab__summary > div {
+  display: grid;
+  gap: 6px;
+}
+
+.security-lab__summary-label {
+  color: #98a4b5;
+  font-size: 12px;
+}
+
+.security-lab__summary strong {
+  font-size: 18px;
+}
+
+.security-lab__tests {
+  display: grid;
+  gap: 12px;
+}
+
+.security-lab__test {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px;
+  background: #0d1118;
+  border: 1px solid #272e3a;
+  border-radius: 12px;
+}
+
+.security-lab__test-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  color: #b8c6db;
+  background: #1a2432;
+  border-radius: 10px;
+}
+
+.security-lab__test-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.security-lab__test-title h3 {
+  margin: 0;
+  font-size: 15px;
+}
+
+.security-lab__test-content > p {
+  margin: 8px 0 12px;
+}
+
+.security-lab__badge {
+  padding: 4px 8px;
+  border: 1px solid #39414e;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.security-lab__badge--pass {
+  color: #8be0b0;
+  background: #14291f;
+  border-color: #28573d;
+}
+
+.security-lab__badge--fail,
+.security-lab__badge--error {
+  color: #ffaaaa;
+  background: #301b20;
+  border-color: #67323b;
+}
+
+.security-lab__badge--idle {
+  color: #a4afbf;
+  background: #1b2029;
+}
+
+.security-lab__result {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.security-lab__metrics {
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  color: #aab5c5;
+}
+
+.security-lab__result pre {
+  max-height: 150px;
+  overflow: auto;
+  padding: 12px;
+  color: #c4cfdf;
+  background: #080b10;
+  border: 1px solid #222936;
+  border-radius: 8px;
+  font-size: 11px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.security-lab__individual-run {
+  padding: 7px 10px;
+  font-size: 12px;
+}
+
+.security-lab__note {
+  margin: 18px 0 0;
+  color: #929eaf;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.security-lab__spinner {
+  animation: security-lab-spin 1s linear infinite;
+}
+
+@keyframes security-lab-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 600px) {
+  .security-lab {
+    padding: 16px;
+  }
+
+  .security-lab__header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .security-lab__test-title {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .security-lab__summary {
+    gap: 24px;
+  }
+}
